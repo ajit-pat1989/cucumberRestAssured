@@ -17,3 +17,7 @@ Feature:
   Scenario: Verify the query parameter of GET
     Given I perform GET operation on for "/post"
     Then I should verify the GET query parameter
+
+  Scenario: Verify the query parameter of GET
+    Given I perform GET operation on for "/post"
+    Then I should verify the GET query parameter
