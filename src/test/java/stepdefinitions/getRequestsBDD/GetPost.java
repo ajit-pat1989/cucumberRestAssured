@@ -1,22 +1,16 @@
-package steps;
+package stepdefinitions.getRequestsBDD;
 
-import cucumber.api.PendingException;
 import cucumber.api.java.en.And;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
-import io.restassured.http.ContentType;
-import org.hamcrest.Matchers;
+import stepdefinitions.baseBDDmethods.BDDStyleMethod;
 
-import static io.restassured.RestAssured.*;
-import static io.restassured.matcher.RestAssuredMatchers.*;
-import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 public class GetPost {
 
     @Given("^I perform GET operation on for \"([^\"]*)\"$")
     public void iPerformGETOperationOnFor(String url) throws Throwable {
-
     }
 
     @And("^I perform GET for the post number \"([^\"]*)\"$")

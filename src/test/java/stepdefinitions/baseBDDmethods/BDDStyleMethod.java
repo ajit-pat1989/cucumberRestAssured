@@ -1,6 +1,9 @@
-package steps;
+package stepdefinitions.baseBDDmethods;
 
 import io.restassured.http.ContentType;
+import org.hamcrest.core.Is;
+
+import java.util.HashMap;
 
 import static io.restassured.RestAssured.*;
 import static org.hamcrest.Matchers.*;
@@ -19,7 +22,7 @@ public class BDDStyleMethod {
         .then()
                 .statusCode(200)
                 .assertThat()
-                .body("author", equalTo("Ajit Desai"));
+                .body("author", equalTo("UFTTraining")).log().all();
     }
 
     public static void containingCollectionsGetRequest() {
@@ -32,7 +35,7 @@ public class BDDStyleMethod {
         .then()
                 .statusCode(200)
                 .assertThat()
-                .body("author", containsInAnyOrder("Ajit Desai","typicode","Ajit Patil",null));
+                .body("author", hasItems("Ajit Desai","typicode","Ajit Patil",null)).log().all();
     }
 
     public static void pathparameterGetRequest() {
@@ -63,6 +66,26 @@ public class BDDStyleMethod {
                 .statusCode(200)
                 .assertThat()
                 .body("author", hasItem("Ajit Desai"));
+    }
+
+    public static void simplePostRequestWithParameter() {
+        String url = String.format("%s%s", "http://localhost:3000/posts/","");
+        System.out.println(url);
+        HashMap<String, Object> postsparam = new HashMap<>();
+        postsparam.put("id", 5);
+        postsparam.put("title", "TestAutomationUFT");
+        postsparam.put("author", "UFTTraining");
+
+        given()
+                .contentType(ContentType.JSON)
+        .with()
+                .body(postsparam)
+        .when()
+                .post(url)
+                .then()
+                .statusCode(201)
+                .assertThat()
+                .body("author", Is.is("UFTTraining"));
     }
 
 }
